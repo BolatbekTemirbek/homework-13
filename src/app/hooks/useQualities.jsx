@@ -28,6 +28,8 @@ export const QualitiesProvider = ({ children }) => {
             setLoading(false);
         } catch (error) {
             errorCatcher(error);
+        } finally {
+            setLoading(false);
         }
     }
     function errorCatcher(error) {
@@ -50,7 +52,7 @@ export const QualitiesProvider = ({ children }) => {
         <QualitiesContext.Provider
             value={{ isLoading, qualities, getQualities }}
         >
-            {children}
+            {!isLoading ? children : "loading..."}
         </QualitiesContext.Provider>
     );
 };

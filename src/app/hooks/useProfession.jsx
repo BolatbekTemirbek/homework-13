@@ -28,6 +28,8 @@ export const ProfessionProvider = ({ children }) => {
             setLoading(false);
         } catch (error) {
             errorCatcher(error);
+        } finally {
+            setLoading(false);
         }
     }
     function errorCatcher(error) {
@@ -42,7 +44,7 @@ export const ProfessionProvider = ({ children }) => {
         <ProfessionContext.Provider
             value={{ isLoading, professions, getProfession }}
         >
-            {children}
+            {!isLoading ? children : "loading..."}
         </ProfessionContext.Provider>
     );
 };
